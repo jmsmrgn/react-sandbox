@@ -17,7 +17,7 @@ module.exports = env => {
     devtool: ifProd('source-map', 'eval'),
     devServer: {
       historyApiFallback: true,
-      quiet: true
+      port: 7777
     },
     module: {
       loaders: [

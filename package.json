@@ -42,11 +42,11 @@
     }
   },
   "scripts": {
-    "prebuild": "rimraf _build",
+    "prebuild": "rimraf build",
     "build": "webpack -p --env.prod",
-    "prebuild:dev": "rimraf _build",
+    "prebuild:dev": "rimraf build",
     "build:dev": "webpack --env.dev",
-    "dev": "webpack-dev-server --env.dev --open",
+    "dev": "webpack-dev-server --colors --open --env.dev",
     "debug": "node-nightly --inspect --debug-brk node_modules/.bin/webpack --env.debug",
     "debug:dev": "npm run debug -- --env.dev",
     "debug:prod": "npm run debug -- --env.prod",
