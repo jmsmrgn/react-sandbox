@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Ships from './Ships';
 import { Link } from 'react-router';
-import styles from '../styles/styles.scss';
+import css from '../css/styles.scss';
 
 class App extends Component {
   constructor() {

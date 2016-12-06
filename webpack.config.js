@@ -1,4 +1,3 @@
-const webpackValidator = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { getIfUtils, removeEmpty } = require('webpack-config-utils');
 const { resolve } = require('path');
@@ -8,11 +7,19 @@ module.exports = env => {
   const { ifProd, ifNotProd } = getIfUtils(env);
 
   const config = {
-    entry: resolve(__dirname, 'src/react-sandbox.js'),
+    entry: resolve(__dirname, 'src/index.js'),
     output: {
       path: resolve(__dirname, 'build'),
       filename: 'bundle.js',
       pathinfo: ifNotProd()
+    },
+    resolve: {
+      extensions: ['.js', '.json']
+    },
+    stats: {
+      color: true,
+      reasons: true,
+      chunks: true
     },
     devtool: ifProd('source-map', 'eval'),
     devServer: {
@@ -20,7 +27,7 @@ module.exports = env => {
       port: 7777
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -31,6 +38,7 @@ module.exports = env => {
         },
         {
           test: /\.scss$/,
+          exclude: /node_modules/,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
             loader: 'css-loader!sass-loader'
@@ -39,12 +47,12 @@ module.exports = env => {
       ]
     },
     plugins: removeEmpty([
+      new ExtractTextPlugin('[name].css'),
       new HtmlWebpackPlugin({
         hash: true,
         filename: 'index.html',
         template: 'src/index.html'
-      }),
-      new ExtractTextPlugin('[name].css'),
+      })
     ])
   };
 
@@ -53,5 +61,5 @@ module.exports = env => {
     debugger;
   }
 
-  return webpackValidator(config);
+  return config;
 };

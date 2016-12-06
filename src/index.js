@@ -5,7 +5,7 @@ import { BrowserRouter, Match, Miss } from 'react-router';
 import App from './components/App';
 import NotFound from './components/NotFound';
 
-const Router = () => (
+const Root = () => (
   <BrowserRouter>
     <div>
       <Match exactly pattern='/' component={App} />
@@ -14,4 +14,4 @@ const Router = () => (
   </BrowserRouter>
 );
 
-render(<Router />, document.getElementById('app'));
+render(<Root />, document.getElementById('app'));
