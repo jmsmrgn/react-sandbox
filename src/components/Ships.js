@@ -1,13 +1,21 @@
 import React from 'react';
 
-const Ships = (props) => (
-  <div>
-    <ul className='ship-list'>
-      {props.data.ships.map((ship, index) =>
-        <li key={index}>{ship}</li>
-      )}
-    </ul>
-  </div>
-);
+const Ships = (props) => {
+  const { name, model, manufacturer } = props.data;
+
+  return (
+    <div>
+      <ul className='ship-list'>
+        <li>Name: <strong>{name}</strong></li>
+        <li>Model: <strong>{model}</strong></li>
+        <li>Manufacturer: <strong>{manufacturer}</strong></li>
+      </ul>
+    </div>
+  );
+};
+
+Ships.propTypes = {
+  data: React.PropTypes.object
+};
 
 export default Ships;
