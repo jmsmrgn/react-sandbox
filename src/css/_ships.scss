@@ -1,12 +1,17 @@
 body {
   background-color: #000;
   color: blue;
+  width: 900px;
+  margin: 0 auto;
 }
-.wrap {
-  background-color: green;
+.ships-wrap {
+  img {
+    width: 600px;
+    margin: 30px auto;
+    display: block;
+  }
 }
 .ship-list {
-  width: 600px;
   margin: 50px auto 0 auto;
   text-align: center;
   list-style-type: none;
@@ -14,4 +19,10 @@ body {
     font-size: 30px;
     color: yellow;
   }
+}
+.btn-lg {
+  font-size: 30px !important;
+  padding: 30px;
+  margin: 0 auto;
+  width: 400px;
 }

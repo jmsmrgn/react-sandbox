@@ -1,11 +1,11 @@
 # react-sandbox
 
-* webpack
+* webpack 2
 * babel
 * react
-* react-router
+* react-router 4
 * scss
-* all the gravy
+* plenty of gravy
 
 ```
 npm install

@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import Ships from './Ships';
-import { Link } from 'react-router';
-import css from '../css/styles.scss';
+import '../css/styles.scss';
 
 class App extends Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
-      ships: []
+      data: []
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('http://swapi.co/api/starships/')
       .then(data => data.json())
-      .then(data => {
-        const ships = data.results.map(data => data.name);
-        this.setState({ ships });
+      .then(json => {
+        this.setState({
+          data: json.results
+        });
       })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch(err => console.error(err));
   }
 
-  render() {
+  render () {
     return (
-      <Ships data={this.state} />
+      <div className='ship-wrap'>
+        <img src='assets/imperial.jpg' />
+        {this.state.data.map((data, key) => {
+          return (
+            <Ships key={key} data={data} />
+          );
+        })}
+      </div>
     );
   }
 }
