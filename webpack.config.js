@@ -8,23 +8,25 @@ module.exports = env => {
   const { ifProd, ifNotProd } = getIfUtils(env);
 
   const config = {
-    entry: resolve(__dirname, 'src/index.js'),
+    context: resolve('src'),
+    entry: './index.js',
     output: {
-      path: resolve(__dirname, 'build'),
+      path: resolve('_build'),
       filename: 'bundle.js',
       pathinfo: ifNotProd()
     },
     resolve: {
-      extensions: ['.js', '.json']
+      extensions: ['.js', '.json', '.scss']
     },
     stats: {
-      color: true,
+      progress: true,
+      colors: true,
       reasons: true,
       chunks: true
     },
     devtool: ifProd('source-map', 'eval'),
     devServer: {
-      contentBase: '/',
+      contentBase: '/assets/',
       historyApiFallback: true,
       port: 7777
     },
@@ -59,14 +61,13 @@ module.exports = env => {
       ]
     },
     plugins: removeEmpty([
-      new ExtractTextPlugin('[name].css'),
+      new ExtractTextPlugin(ifProd('styles.[name].[chunkhash].css', 'styles.[name].css')),
       new HtmlWebpackPlugin({
         hash: true,
-        filename: 'index.html',
-        template: 'src/index.html'
+        template: 'index.html'
       }),
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' }
+        { from: 'assets', to: 'assets' }
       ])
     ])
   };
