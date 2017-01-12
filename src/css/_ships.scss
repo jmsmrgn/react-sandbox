@@ -17,12 +17,6 @@ body {
   list-style-type: none;
   li {
     font-size: 30px;
-    color: yellow;
+    color: $yellow;
   }
-}
-.btn-lg {
-  font-size: 30px !important;
-  padding: 30px;
-  margin: 0 auto;
-  width: 400px;
 }
