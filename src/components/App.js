@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'whatwg-fetch';
 import Ships from './Ships';
 import '../css/styles.scss';
 
